@@ -1,5 +1,5 @@
-## Redux_Study
+# Redux_Study
 
-#### VanillaJS_Redux
+### VanillaJS_Redux
 
 Learning Redux in VanillaJS with NomadCoders lecture
