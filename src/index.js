@@ -1,7 +1,12 @@
 import { legacy_createStore as createStore } from "redux";
 
+const plus = document.getElementById("add");
+const minus = document.getElementById("sub");
+const number = document.querySelector("span");
+
+number.innerText = 0;
+
 const countModifier = (count = 0, action) => {
-	console.log(count, action);
 	if (action.type === "ADD") {
 		return count + 1;
 	} else if (action.type === "SUB") {
@@ -13,14 +18,19 @@ const countModifier = (count = 0, action) => {
 
 const countStore = createStore(countModifier);
 
-const plus = document.getElementById("add");
-const minus = document.getElementById("sub");
-const number = document.querySelector("span");
+const onNumberChange = () => {
+	number.innerText = countStore.getState();
+};
 
-countStore.dispatch({ type: "ADD" });
-countStore.dispatch({ type: "ADD" });
-countStore.dispatch({ type: "ADD" });
-countStore.dispatch({ type: "ADD" });
-countStore.dispatch({ type: "SUB" });
+countStore.subscribe(onNumberChange);
 
-console.log(countStore.getState());
+const handlePlus = () => {
+	countStore.dispatch({ type: "ADD" });
+};
+
+const handleMinus = () => {
+	countStore.dispatch({ type: "SUB" });
+};
+
+plus.addEventListener("click", handlePlus);
+minus.addEventListener("click", handleMinus);
