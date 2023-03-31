@@ -6,13 +6,17 @@ const number = document.querySelector("span");
 
 number.innerText = 0;
 
+const ADD = "ADD";
+const SUB = "SUB";
+
 const countModifier = (count = 0, action) => {
-	if (action.type === "ADD") {
-		return count + 1;
-	} else if (action.type === "SUB") {
-		return count - 1;
-	} else {
-		return count;
+	switch (action.type) {
+		case ADD:
+			return count + 1;
+		case SUB:
+			return count - 1;
+		default:
+			return count;
 	}
 };
 
@@ -25,11 +29,11 @@ const onNumberChange = () => {
 countStore.subscribe(onNumberChange);
 
 const handlePlus = () => {
-	countStore.dispatch({ type: "ADD" });
+	countStore.dispatch({ type: ADD });
 };
 
 const handleMinus = () => {
-	countStore.dispatch({ type: "SUB" });
+	countStore.dispatch({ type: SUB });
 };
 
 plus.addEventListener("click", handlePlus);
