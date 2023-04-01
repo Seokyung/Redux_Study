@@ -1,5 +1,3 @@
 # Redux_Study
 
-### VanillaJS_Redux
-
-Learning Redux in VanillaJS with NomadCoders lecture
+Learning Redux in VanillaJS and React with NomadCoders lecture
