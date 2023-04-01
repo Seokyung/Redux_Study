@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators, addTodo } from "../store";
 
-function Home({ todoList }) {
+function Home() {
 	const [text, setText] = useState("");
+	const todoList = useSelector((state) => state);
+	const dispatch = useDispatch();
 
 	const onTextChange = (e) => {
 		const {
@@ -13,7 +16,7 @@ function Home({ todoList }) {
 
 	const onAddTodo = (e) => {
 		e.preventDefault();
-		console.log(text);
+		dispatch(addTodo(text));
 		setText("");
 	};
 
@@ -29,15 +32,25 @@ function Home({ todoList }) {
 				/>
 				<button>Add</button>
 			</form>
-			<ul>{JSON.stringify(todoList)}</ul>
+			<ul>
+				{todoList.map((todo) => (
+					<li key={todo.id}>{todo.text}</li>
+				))}
+			</ul>
 		</div>
 	);
 }
 
-function mapStateToProps(state) {
+// getState() -> useSelector()
+const mapStateToProps = (state) => {
 	return {
 		todoList: state,
 	};
-}
+};
 
-export default connect(mapStateToProps)(Home);
+// dispatch() -> useDispatch()
+const mapDispatchToProps = (dispatch) => {
+	return { addTodo: (text) => dispatch(actionCreators.addTodo(text)) };
+};
+
+export default Home;
