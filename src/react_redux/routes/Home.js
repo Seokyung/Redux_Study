@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Todo from "../components/Todo";
-import { actionCreators } from "../store";
+import { add } from "../store";
 
 function Home() {
 	const [text, setText] = useState("");
@@ -17,7 +17,7 @@ function Home() {
 
 	const onAddTodo = (e) => {
 		e.preventDefault();
-		dispatch(actionCreators.addTodo(text));
+		dispatch(add(text));
 		setText("");
 	};
 

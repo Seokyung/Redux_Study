@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { actionCreators } from "../store";
+import { remove } from "../store";
 
 function Detail() {
 	const navigate = useNavigate();
@@ -11,7 +11,7 @@ function Detail() {
 	const detailTodo = todo.find((item) => item.id === parseInt(detailId));
 
 	const onDelete = () => {
-		dispatch(actionCreators.deleteTodo(parseInt(detailId)));
+		dispatch(remove(parseInt(detailId)));
 		navigate("/", { replace: true });
 	};
 
