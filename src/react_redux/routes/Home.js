@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Todo from "../components/Todo";
 import { actionCreators, addTodo } from "../store";
 
 function Home() {
@@ -34,7 +35,7 @@ function Home() {
 			</form>
 			<ul>
 				{todoList.map((todo) => (
-					<li key={todo.id}>{todo.text}</li>
+					<Todo key={todo.id} {...todo} />
 				))}
 			</ul>
 		</div>
