@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Todo from "../components/Todo";
-import { actionCreators, addTodo } from "../store";
+import { actionCreators } from "../store";
 
 function Home() {
 	const [text, setText] = useState("");
@@ -17,7 +17,7 @@ function Home() {
 
 	const onAddTodo = (e) => {
 		e.preventDefault();
-		dispatch(addTodo(text));
+		dispatch(actionCreators.addTodo(text));
 		setText("");
 	};
 
@@ -43,15 +43,15 @@ function Home() {
 }
 
 // getState() -> useSelector()
-const mapStateToProps = (state) => {
-	return {
-		todoList: state,
-	};
-};
+// const mapStateToProps = (state) => {
+// 	return {
+// 		todoList: state,
+// 	};
+// };
 
 // dispatch() -> useDispatch()
-const mapDispatchToProps = (dispatch) => {
-	return { addTodo: (text) => dispatch(actionCreators.addTodo(text)) };
-};
+// const mapDispatchToProps = (dispatch) => {
+// 	return { addTodo: (text) => dispatch(actionCreators.addTodo(text)) };
+// };
 
 export default Home;
